@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: argocd
+  name: argocd-cm
+data:
+  url: https://argocd.kb.cx:30443
+  dex.config: |
+    connectors:
+      # GitHub example
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: 078b153a10d37bd090b4
+          clientSecret: e2ea4f17c4254c5b9152f7fd373835b541c394dd
+          orgs:
+          - name: beehat
+          loadAllGroups: false
+          teamNameField: slug
+          useLoginAsID: false

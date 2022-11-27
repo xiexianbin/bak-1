@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-dex-server
+spec:
+  template:
+    spec:
+      volumes:
+      - name: x-root-ca-secret  # SSL 的根证书，示例采用 https://github.com/x-ca 签发
+        secret:
+          secretName: x-root-ca-secret
+      containers:
+      - name: dex
+        volumeMounts:
+        - mountPath: /etc/ssl/certs/
+          name: x-root-ca-secret

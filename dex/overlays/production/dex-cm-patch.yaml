@@ -1,0 +1,32 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: dex
+  namespace: dex
+data:
+  config.yaml: |
+    issuer: https://dex.kb.cx:30443
+    storage:
+      type: memory
+    web:
+      https: 0.0.0.0:5556
+      tlsCert: /etc/dex/tls/tls.crt
+      tlsKey: /etc/dex/tls/tls.key
+    connectors:
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: $GITHUB_CLIENT_ID
+          clientSecret: $GITHUB_CLIENT_SECRET
+          redirectURI: https://dex.kb.cx:30443/callback
+          orgs:
+            - name: beehat
+    oauth2:
+      skipApprovalScreen: false
+    staticClients:
+    - id: demo
+      name: 'argo'
+      redirectURIs:
+      - 'https://argocd.kb.cx:30443/api/dex/callback'
+      secret: ZXhhbXBsZS1hcHAtc2VjcmV0

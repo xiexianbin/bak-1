@@ -1,0 +1,27 @@
+# https://argoproj.github.io/argo-workflows/argo-server-sso-argocd/
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argo-server
+spec:
+  template:
+    spec:
+      containers:
+        - name: argo-server
+          args:
+            - server
+            - --namespaced
+            - --auth-mode
+            - sso
+            # - --auth-mode
+            # - server
+            # - --auth-mode
+            # - client
+          volumeMounts:
+          - mountPath: /etc/ssl/certs/
+            name: x-root-ca-secret
+      volumes:
+      - name: x-root-ca-secret  # SSL 的根证书，示例采用 https://github.com/x-ca 签发
+        secret:
+          secretName: x-root-ca-secret

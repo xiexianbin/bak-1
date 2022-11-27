@@ -1,0 +1,33 @@
+# https://argoproj.github.io/argo-workflows/argo-server/#ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argo-server
+  namespace: argo
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    # If you encounter a redirect loop or are getting a 307 response code
+    # then you need to force the nginx ingress to connect to the backend using HTTPS.
+    #
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" # ingress-nginx
+    ingress.kubernetes.io/protocol: https # Traefik
+spec:
+  rules:
+  - host: argo.kb.cx
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argo-server
+            port:
+              name: web
+
+  tls:
+  - hosts:
+    - argo.kb.cx
+    secretName: default-tls
