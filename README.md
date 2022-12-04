@@ -1,3 +1,3 @@
-# k8s-manifests
+# k8s-practise
 
-k8s practice manifests
+k8s practise manifests

@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/xiexianbin/k8s-practice.git
+    repoURL: https://github.com/xiexianbin/k8s-practise.git
     targetRevision: HEAD
     path: runtime
   destination:

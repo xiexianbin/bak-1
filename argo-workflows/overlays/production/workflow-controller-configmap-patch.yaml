@@ -1,10 +1,17 @@
 # https://argoproj.github.io/argo-workflows/workflow-controller-configmap.yaml
+# https://github.com/argoproj/argo-workflows/blob/master/docs/workflow-controller-configmap.yaml
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: workflow-controller-configmap
 data:
+  parallelism: "20"
+  namespaceParallelism: "20"
+  retentionPolicy: |
+    completed: 100
+    failed: 30
+    errored: 30
   # SSO Configuration for the Argo server.
   # You must also start argo server with `--auth-mode sso`.
   # https://argoproj.github.io/argo-workflows/argo-server-auth-mode/

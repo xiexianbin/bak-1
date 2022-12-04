@@ -13,3 +13,7 @@ curl -o base/install.yalm https://raw.githubusercontent.com/argoproj/argo-cd/v2.
 ```
 kubectl -n argocd patch svc argocd-server -p '{"spec": {"type": "NodePort"}}'
 ```
+
+- well-known 信息
+
+https://<argocd-url>/api/dex/.well-known/openid-configuration

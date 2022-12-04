@@ -14,3 +14,10 @@ spec:
         volumeMounts:
         - mountPath: /etc/ssl/certs/
           name: x-root-ca-secret
+        # https://argoproj.github.io/argo-workflows/argo-server-sso-argocd/
+        env:
+          - name: ARGO_WORKFLOWS_SSO_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: argo-workflows-sso
+                key: client-secret
