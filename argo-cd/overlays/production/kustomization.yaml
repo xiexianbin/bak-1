@@ -9,3 +9,4 @@ resources:
 patchesStrategicMerge:
 - argocd-cm-dex-connector-patch.yaml
 - argocd-dex-server-patch.yaml
+- argocd-dex-server-support-auth-argo-workflows-patch.yaml

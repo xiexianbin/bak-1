@@ -33,7 +33,7 @@ spec:
         app: nfs-server
     spec:
       nodeSelector:
-        "kubernetes.io/os": linux
+        "kubernetes.io/os": linux  # change to nfs server node
       containers:
         - name: nfs-server
           image: itsthenetwork/nfs-server-alpine:latest

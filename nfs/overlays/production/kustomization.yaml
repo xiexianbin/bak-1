@@ -4,5 +4,5 @@ namespace: nfs
 resources:
 - namespace.yaml
 - ../../base
-patchesStrategicMerge:
-- storageclass-patch.yaml
+# patchesStrategicMerge:
+# - storageclass-patch.yaml
